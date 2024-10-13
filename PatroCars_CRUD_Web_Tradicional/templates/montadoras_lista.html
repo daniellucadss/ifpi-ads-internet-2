@@ -8,9 +8,25 @@
     <ul>
         {% for montadora in montadoras %}
             <li> {{montadora.nome}} </li>
-            <a href="/montadora/{{ montadora.id }}">Ver Detalhes</a>
+            <div style="display: inline-block;">
+                <form action="/montadora_detalhes/{{ montadora.id }}" method="get" style="display: inline-block;">
+                    <button type="submit">Ver Detalhes</button>
+                </form>
+                <form action="/montadora_atualizar/{{ montadora.id }}" method="get" style="display: inline-block;">
+                    <button type="submit">Atualizar</button>
+                </form>
+                <form action="/montadora_deletar/{{ montadora.id }}" method="post" style="display: inline-block;">
+                    <input type="hidden" name="_method" value="delete">
+                    <button type="submit">Deletar</button>
+                </form>
+            </div>
         {% endfor %}
     </ul>
-    <a href="/montadora_formulario">Adicionar montadora</a>
-    <a href="/">Voltar</a>
-{% endblock %}
+    <form action="/montadora_adicionar" method="get">
+        <button type="submit">Adicionar montadora</button>
+    </form>
+    <br>
+    <form action="/" method="get">
+        <button type="submit">Voltar</button>
+    </form>
+{% endblock %}  

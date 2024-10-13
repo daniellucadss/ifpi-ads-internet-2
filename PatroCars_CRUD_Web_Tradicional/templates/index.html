@@ -13,8 +13,12 @@
     <main>
         <h2>{% block page_title %} Boas Vindas ao PatroCars {% endblock %}</h2>
         {% block content %}
-            <a href="/montadoras_lista">Montadoras</a>
-            <a href="/carros_lista">Carros</a>
+        <form action="/carros_lista" method="get" style="display: inline-block;">
+            <button type="submit">Carros</button>
+        </form>
+        <form action="/montadoras_lista" method="get" style="display: inline-block;">
+            <button type="submit">Montadoras</button>
+        </form>
         {% endblock %}
     </main>
     <footer>

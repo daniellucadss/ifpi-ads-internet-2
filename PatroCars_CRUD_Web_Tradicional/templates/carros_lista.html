@@ -5,12 +5,28 @@
 {% block page_title %} Carros {% endblock %}
 
 {% block content %} 
-    <ul>
-        {% for carro in carros %}
-            <li> {{carro.nome}} </li>
-            <a href="/carro/{{ carro.id }}">Ver Detalhes</a>
-        {% endfor %}
-    </ul>
-    <a href="/carro_formulario">Adicionar carro</a>
-    <a href="/">Voltar</a>
+<ul>
+    {% for carro in carros %}
+        <li> {{carro.nome}} </li>
+        <div style="display: inline-block;">
+            <form action="/carro_detalhes/{{ carro.id }}" method="get" style="display: inline-block;">
+                <button type="submit">Ver Detalhes</button>
+            </form>
+            <form action="/carro_atualizar/{{ carro.id }}" method="get" style="display: inline-block;">
+                <button type="submit">Atualizar</button>
+            </form>
+            <form action="/carro_deletar/{{ carro.id }}" method="post" style="display: inline-block;">
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit">Deletar</button>
+            </form>
+        </div>
+    {% endfor %}
+</ul>
+<form action="/carro_adicionar" method="get">
+    <button type="submit">Adicionar carro</button>
+</form>
+<br>
+<form action="/" method="get">
+    <button type="submit">Voltar</button>
+</form>
 {% endblock %}

@@ -8,6 +8,9 @@ class MontadoraBase(BaseModel):
 class MontadoraCreate(MontadoraBase):
     pass
 
+class MontadoraUpdate(MontadoraBase):
+    pass
+
 class Montadora(MontadoraBase):
     id: int
     class Config:
@@ -19,6 +22,9 @@ class CarroBase(BaseModel):
     montadora_id: int
 
 class CarroCreate(CarroBase):
+    pass
+
+class CarroUpdate(CarroBase):
     pass
 
 class Carro(CarroBase):

@@ -9,7 +9,12 @@
     <p><strong>Ano de Fabricação:</strong> {{ carro.ano_fabricacao }}</p>
     <p><strong>Montadora:</strong> {{ carro.montadora.nome }}</p>
     <p><strong>País de Origem:</strong> {{ carro.montadora.pais }}</p>
-    <a href="/montadora/{{ carro.montadora.id }}">Ver Detalhes da Montadora</a>
-    <a href="/carros_lista">Voltar para a Lista de Carros</a>
+    <form action="/montadora_detalhes/{{ carro.montadora.id }}" method="get">
+        <button type="submit">Ver Detalhes da Montadora</button>
+    </form>
+    <br>
+    <form action="/montadoras_lista" method="get">
+        <button type="submit">Voltar para carros</button>
+    </form>
 {% endblock %}
 

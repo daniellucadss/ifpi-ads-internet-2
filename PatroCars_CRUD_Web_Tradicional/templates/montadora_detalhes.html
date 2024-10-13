@@ -9,7 +9,9 @@
     <p><strong>País de Origem:</strong> {{ montadora.pais }}</p>
     <p><strong>Ano de Fundação:</strong> {{ montadora.ano_fundacao }}</p>
     
-    <a href="/montadoras_lista">Voltar para a Lista de Montadoras</a>
+    <form action="/montadoras_lista" method="get">
+        <button type="submit">Voltar para montadoras</button>
+    </form>
 {% endblock %}
 
 
