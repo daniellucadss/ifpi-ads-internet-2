@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+
+{% block title %} Detalhes da Montadora {% endblock %}
+
+{% block page_title %} Detalhes da Montadora {% endblock %}
+
+{% block content %}
+    <h2>{{ montadora.nome }}</h2>
+    <p><strong>País de Origem:</strong> {{ montadora.pais }}</p>
+    <p><strong>Ano de Fundação:</strong> {{ montadora.ano_fundacao }}</p>
+    
+    <a href="/montadoras_lista">Voltar para a Lista de Montadoras</a>
+{% endblock %}
+
+

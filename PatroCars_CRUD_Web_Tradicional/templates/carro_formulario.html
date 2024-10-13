@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+
+{% block title %} Adicionar Carro {% endblock %}
+
+{% block page_title %} Adicionar Carro {% endblock %}
+
+{% block content %} 
+<form method="POST">
+    <label for="nome">Nome do Carro:</label>
+    <input type="text" name="nome" id="nome" required><br>
+
+    <label for="ano_fabricacao">Ano de Fabricação:</label>
+    <input type="number" name="ano_fabricacao" id="ano_fabricacao" required><br>
+
+    <label for="montadora_id">Montadora:</label>
+    <select name="montadora_id" id="montadora_id" required>
+        <option value="">Selecione uma montadora</option>
+        {% for montadora in montadoras %}
+            <option value="{{ montadora.id }}">{{ montadora.nome }}</option>
+        {% endfor %}
+    </select><br>
+
+    <input type="submit" value="Adicionar">
+</form>
+<a href="/carros_lista">Voltar</a>
+{% endblock %}

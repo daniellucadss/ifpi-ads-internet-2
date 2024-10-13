@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+
+{% block title %} Carros {% endblock %}
+
+{% block page_title %} Carros {% endblock %}
+
+{% block content %} 
+    <ul>
+        {% for carro in carros %}
+            <li> {{carro.nome}} </li>
+            <a href="/carro/{{ carro.id }}">Ver Detalhes</a>
+        {% endfor %}
+    </ul>
+    <a href="/carro_formulario">Adicionar carro</a>
+    <a href="/">Voltar</a>
+{% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block extra_css %} {% endblock %}
+    <title>{% block title %} PatroCars {% endblock %}</title> 
+</head>
+<body>
+    <header>
+        <h1>PatroCars</h1>
+    </header>
+    <main>
+        <h2>{% block page_title %} Boas Vindas ao PatroCars {% endblock %}</h2>
+        {% block content %}
+            <a href="/montadoras_lista">Montadoras</a>
+            <a href="/carros_lista">Carros</a>
+        {% endblock %}
+    </main>
+    <footer>
+    </footer>
+</body>
+</html>
