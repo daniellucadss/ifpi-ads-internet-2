@@ -31,11 +31,11 @@
     <br>
     <label for="turbo">Tem Turbo:</label>
     <input type="hidden" name="turbo" value="false">
-    <input type="checkbox" name="turbo" id="turbo" value="true"><br>
+    <input type="checkbox" name="turbo" id="turbo" value="true" {% if modelo.turbo %}checked{% endif %}><br>
     <br>
     <label for="automatico">Tem Transmissão Automática:</label>
     <input type="hidden" name="automatico" value="false">
-    <input type="checkbox" name="automatico" id="automatico" value="true"><br>
+    <input type="checkbox" name="automatico" id="automatico" value="true" {% if modelo.automatico %}checked{% endif %}><br>
     <br>
     <button type="submit">Atualizar</button>
 </form>
