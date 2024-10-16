@@ -5,7 +5,7 @@
 {% block page_title %} Detalhes do Veículo {% endblock %}
 
 {% block content %}
-    <h2>{{ veiculo.modelo.nome }}</h2>
+    <h3>{{ veiculo.modelo.nome }}</h3>
     <p><strong>Cor:</strong> {{ veiculo.cor }}</p>
     <p><strong>Ano de Fabricação:</strong> {{ veiculo.ano_fabricacao }}</p>
     <p><strong>Ano do Modelo:</strong> {{ veiculo.modelo.ano_modelo }}</p>
@@ -16,14 +16,14 @@
     <p><strong>País de Origem:</strong> {{ veiculo.modelo.montadora.pais }}</p>
     <p><strong>Vendido:</strong> {{ "Sim" if veiculo.vendido else "Não" }}</p>
     <form action="/veiculo_atualizar/{{ veiculo.id }}" method="get">
-        <button type="submit">Atualizar</button>
+        <button type="submit" class="btn btn-primary">Atualizar</button>
     </form>
     <br>
     <form action="/modelo_detalhes/{{ veiculo.modelo.id }}" method="get">
-        <button type="submit">Ver Detalhes do Modelo</button>
+        <button type="submit" class="btn btn-success">Ver Detalhes do Modelo</button>
     </form>
     <br>
     <form action="/veiculos_lista" method="get">
-        <button type="submit">Voltar</button>
+        <button type="submit" class="btn btn-secondary">Voltar</button>
     </form>
 {% endblock %}

@@ -4,21 +4,52 @@
 {% block page_title %}Login{% endblock %}
 
 {% block content %}
-<form action="/login" method="post">
-    <label for="username">Nome de Usuário:</label>
-    <input type="text" name="username" id="username" required><br><br>
-    <label for="password">Senha:</label>
-    <input type="password" name="password" id="password" required><br><br>
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
-    {% if message %}
-        <p style="color: green;">{{ message }}</p>
-    {% endif %}
-    <button type="submit">Entrar</button>
-</form>
-<br>
-<form action="/cadastro" method="get">
-    <button type="submit">Cadastrar-se</button>
-</form>
+<section id="section-login">
+    <div class="d-flex justify-content-center">
+        <form method="post" action="/login" id="login">
+            <p>
+                <label for="username">Nome de usuário: </label>
+                <input id="username" name="username" required="required" type="text" placeholder="Nome de usuário" class="form-control" />
+            </p>
+            <p>
+                <label for="password">Senha: </label>
+                <input id="password" name="password" required="required" type="password" placeholder="Senha" class="form-control" />
+            </p>
+            <p>
+                <button type="submit" class="btn btn-success" onclick="login()">Entrar</button>
+            </p>
+            {% if error %}
+            <p style="color: red;">{{ error }}</p>
+            {% endif %}
+            {% if message %}
+            <p style="color: green;">{{ message }}</p>
+            {% endif %}
+        </form>
+    </div>
+</section>
+
+<section id="section-cadastro">
+    <div id="botao-cadastrar">
+        <button type="button" class="btn btn-info" data-bs-toggle="collapse" data-bs-target="#form-cadastrar">Não é cadastrado ainda? Cadastre-se</button>
+    </div>
+    <div id="form-cadastrar" class="collapse">
+        <h2>Criar minha conta</h2>
+        <div class="d-flex justify-content-center">
+            <form method="post" action="/cadastro" id="cadastro">
+                <p>
+                    <label for="username">Nome de usuário: </label>
+                    <input id="username_cadastro" name="username" required="required" type="text" placeholder="Nome de usuário" class="form-control" />
+                </p>
+                <p>
+                    <label for="password">Senha: </label>
+                    <input id="password_cadastro" name="password" required="required" type="password" placeholder="Mínimo de 6 caracteres" class="form-control" />
+                </p>
+                <p>
+                    <button type="submit" class="btn btn-primary" onclick="cadastro()">Cadastrar</button>
+                </p>
+            </form>
+        </div>
+    </div>
+</section>
 {% endblock %}
+

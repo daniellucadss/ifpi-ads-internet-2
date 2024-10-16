@@ -5,15 +5,15 @@
 {% block page_title %} Detalhes da Montadora {% endblock %}
 
 {% block content %}
-    <h2>{{ montadora.nome }}</h2>
+    <h3>{{ montadora.nome }}</h3>
     <p><strong>País de Origem:</strong> {{ montadora.pais }}</p>
     <p><strong>Ano de Fundação:</strong> {{ montadora.ano_fundacao }}</p>
     <form action="/montadora_atualizar/{{ montadora.id }}" method="get">
-        <button type="submit">Atualizar</button>
+        <button type="submit" class="btn btn-primary">Atualizar</button>
     </form>
     <br>
     <form action="/montadoras_lista" method="get">
-        <button type="submit">Voltar</button>
+        <button type="submit" class="btn btn-secondary">Voltar</button>
     </form>
 {% endblock %}
 

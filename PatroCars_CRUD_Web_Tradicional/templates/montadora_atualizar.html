@@ -8,18 +8,18 @@
 <form action="/montadora_atualizar/{{ montadora.id }}" method="post">
     <input type="hidden" name="_method" value="patch">
     <label for="nome">Nome da Montadora:</label>
-    <input type="text" name="nome" id ="nome" value="{{ montadora.nome }}"><br>
+    <input type="text" name="nome" id ="nome" value="{{ montadora.nome }}" class="form-control"><br>
     <br>
     <label for="pais">País de origem:</label>
-    <input type="text" name="pais" id ="pais" value="{{ montadora.pais }}"><br>
+    <input type="text" name="pais" id ="pais" value="{{ montadora.pais }}" class="form-control"><br>
     <br>
     <label for="ano_fundacao">Ano de fundação:</label>
-    <input type="number" name="ano_fundacao" id ="ano_fundacao" value="{{ montadora.ano_fundacao }}"><br>
+    <input type="number" name="ano_fundacao" id ="ano_fundacao" value="{{ montadora.ano_fundacao }}" class="form-control"><br>
     <br>
-    <button type="submit">Atualizar</button>
+    <button type="submit" class="btn btn-primary">Atualizar</button>
 </form>
 <br>
 <form action="/montadoras_lista" method="get">
-    <button type="submit">Voltar</button>
+    <button type="submit" class="btn btn-secondary">Voltar</button>
 </form>
 {% endblock %}
