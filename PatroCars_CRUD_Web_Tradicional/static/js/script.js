@@ -25,11 +25,6 @@ function login(){
 }
 */
 
-function login() {
-    alert("Logado com sucesso!");
-    window.location.href = "/index";
-}
-
 function cadastro() {
     alert("Cadastrado com sucesso!");
     window.location.href = "/login";
