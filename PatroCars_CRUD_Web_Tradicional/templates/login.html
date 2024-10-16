@@ -8,7 +8,7 @@
     <label for="username">Nome de Usuário:</label>
     <input type="text" name="username" id="username" required><br><br>
     <label for="password">Senha:</label>
-    <input type="password" name="password" id="password" required><br>
+    <input type="password" name="password" id="password" required><br><br>
     {% if error %}
         <p style="color: red;">{{ error }}</p>
     {% endif %}
@@ -18,5 +18,7 @@
     <button type="submit">Entrar</button>
 </form>
 <br>
-<a href="/cadastro">Cadastrar-se</a>
+<form action="/cadastro" method="get">
+    <button type="submit">Cadastrar-se</button>
+</form>
 {% endblock %}
