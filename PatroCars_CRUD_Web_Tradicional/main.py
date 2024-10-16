@@ -3,10 +3,14 @@ from fastapi import Depends, FastAPI, Form, Request
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from sqlmodel import Session, SQLModel
-from crud import create_carro, delete_carro, get_carro, get_carros, create_montadora, get_montadora, get_montadoras, update_carro, update_montadora, delete_montadora
-from schemas import CarroCreate, CarroUpdate, MontadoraCreate, MontadoraUpdate
-from database import get_engine, get_session
+from sqlmodel import Session, SQLModel, select
+from repository.models import Usuario
+from repository.operations import create_montadora, create_usuario, create_veiculo, delete_veiculo, get_montadora, get_montadoras, get_usuario, get_veiculo, get_veiculos, update_montadora, delete_montadora, create_modelo, get_modelo, get_modelos, update_modelo, delete_modelo, update_veiculo
+from schemas.montadora import MontadoraCreate, MontadoraUpdate
+from schemas.modelo import ModeloCreate, ModeloUpdate
+from schemas.user import UsuarioCreate, UsuarioLogin
+from schemas.veiculo import VeiculoCreate, VeiculoUpdate
+from repository.connection import get_engine, get_session
 
 app = FastAPI()
 
@@ -19,6 +23,35 @@ SQLModel.metadata.create_all(get_engine())
 SessionDep = Annotated[Session, Depends(get_session)]
 
 @app.get("/")
+async def index(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
+
+@app.get("/cadastro")
+async def get_cadastro(request: Request):
+    return templates.TemplateResponse("cadastro.html", {"request": request})
+
+@app.post("/cadastro")
+async def post_cadastro(request: Request, db: SessionDep, usuario_data: Annotated[UsuarioCreate, Form()]):
+    usuario = get_usuario(db, usuario_data)
+
+    if usuario:
+        return templates.TemplateResponse("cadastro.html", {"request": request, "error": "Usuário já cadastrado"})
+
+    create_usuario(db, usuario_data)
+    return RedirectResponse(url="/login", status_code=303)
+
+@app.get("/login")
+async def get_login(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
+
+@app.post("/login")
+async def post_login(request: Request, db: SessionDep, usuario_data: Annotated[UsuarioLogin, Form()]):
+    usuario = get_usuario(db, usuario_data)
+    if not usuario:
+        return templates.TemplateResponse("login.html", {"request": request, "error": "Nome de usuário ou senha incorretos"})
+    return templates.TemplateResponse("index.html", {"request": request, "message": f"Bem-vindo, {usuario.username}!"})
+
+@app.get("/index")
 async def index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
@@ -56,39 +89,74 @@ async def montadora_deletar(db: SessionDep, montadora_id: int):
     delete_montadora(db, montadora_id)
     return RedirectResponse("/montadoras_lista", status_code=303)
 
-@app.get("/carros_lista")
-async def carros_lista(request: Request, db: SessionDep):
-    carros = get_carros(db)
-    return templates.TemplateResponse("carros_lista.html", {"request": request, "carros": carros})
+@app.get("/modelos_lista")
+async def modelos_lista(request: Request, db: SessionDep):
+    modelos = get_modelos(db)
+    return templates.TemplateResponse("modelos_lista.html", {"request": request, "modelos": modelos})
 
-@app.get("/carro_adicionar")
-async def carro_adicionar(request: Request, db: SessionDep):
+@app.get("/modelo_adicionar")
+async def modelo_adicionar(request: Request, db: SessionDep):
     montadoras = get_montadoras(db)
-    return templates.TemplateResponse("carro_adicionar.html", {"request": request, "montadoras": montadoras})
+    return templates.TemplateResponse("modelo_adicionar.html", {"request": request, "montadoras": montadoras})
 
-@app.post("/carro_adicionar")
-async def carro_adicionar(db: SessionDep, carro: Annotated[CarroCreate, Form()]):
-    create_carro(db, carro)
-    return RedirectResponse("/carros_lista", status_code=303)
+@app.post("/modelo_adicionar")
+async def modelo_adicionar(db: SessionDep, modelo: Annotated[ModeloCreate, Form()]):
+    create_modelo(db, modelo)
+    return RedirectResponse("/modelos_lista", status_code=303)
 
-@app.get("/carro_detalhes/{carro_id}")
-async def carro_detalhes(request: Request, db: SessionDep, carro_id: int):
-    carro = get_carro(db, carro_id)
-    return templates.TemplateResponse("carro_detalhes.html", {"request": request, "carro": carro})
+@app.get("/modelo_detalhes/{modelo_id}")
+async def modelo_detalhes(request: Request, db: SessionDep, modelo_id: int):
+    modelo = get_modelo(db, modelo_id)
+    return templates.TemplateResponse("modelo_detalhes.html", {"request": request, "modelo": modelo})
 
-
-@app.get("/carro_atualizar/{carro_id}")
-async def carro_atualizar(request: Request, db: SessionDep, carro_id: int):
+@app.get("/modelo_atualizar/{modelo_id}")
+async def modelo_atualizar(request: Request, db: SessionDep, modelo_id: int):
     montadoras = get_montadoras(db)
-    carro = get_carro(db, carro_id)
-    return templates.TemplateResponse("carro_atualizar.html", {"request": request, "carro": carro, "montadoras": montadoras})
+    modelo = get_modelo(db, modelo_id)
+    return templates.TemplateResponse("modelo_atualizar.html", {"request": request, "modelo": modelo, "montadoras": montadoras})
 
-@app.post("/carro_atualizar/{carro_id}")
-async def carro_atualizar(db: SessionDep, carro_id: int, carro: Annotated[CarroUpdate, Form()]):
-    update_carro(db, carro_id, carro)
-    return RedirectResponse("/carros_lista", status_code=303)
+@app.post("/modelo_atualizar/{modelo_id}")
+async def modelo_atualizar(db: SessionDep, modelo_id: int, modelo: Annotated[ModeloUpdate, Form()]):
+    update_modelo(db, modelo_id, modelo)
+    return RedirectResponse("/modelos_lista", status_code=303)
 
-@app.post("/carro_deletar/{carro_id}")
-async def carro_deletar(db: SessionDep, carro_id: int):
-    delete_carro(db, carro_id)
-    return RedirectResponse("/carros_lista", status_code=303)
+@app.post("/modelo_deletar/{modelo_id}")
+async def modelo_deletar(db: SessionDep, modelo_id: int):
+    delete_modelo(db, modelo_id)
+    return RedirectResponse("/modelos_lista", status_code=303)
+
+@app.get("/veiculos_lista")
+async def veiculos_lista(request: Request, db: SessionDep):
+    veiculos = get_veiculos(db)
+    return templates.TemplateResponse("veiculos_lista.html", {"request": request, "veiculos": veiculos})
+
+@app.get("/veiculo_adicionar")
+async def veiculo_adicionar(request: Request, db: SessionDep):
+    modelos = get_modelos(db)
+    return templates.TemplateResponse("veiculo_adicionar.html", {"request": request, "modelos": modelos})
+
+@app.post("/veiculo_adicionar")
+async def veiculo_adicionar(db: SessionDep, veiculo: Annotated[VeiculoCreate, Form()]):
+    create_veiculo(db, veiculo)
+    return RedirectResponse("/veiculos_lista", status_code=303)
+
+@app.get("/veiculo_detalhes/{veiculo_id}")
+async def veiculo_detalhes(request: Request, db: SessionDep, veiculo_id: int):
+    veiculo = get_veiculo(db, veiculo_id)
+    return templates.TemplateResponse("veiculo_detalhes.html", {"request": request, "veiculo": veiculo})
+
+@app.get("/veiculo_atualizar/{veiculo_id}")
+async def veiculo_atualizar(request: Request, db: SessionDep, veiculo_id: int):
+    modelos = get_modelos(db)
+    veiculo = get_veiculo(db, veiculo_id)
+    return templates.TemplateResponse("veiculo_atualizar.html", {"request": request, "veiculo": veiculo, "modelos": modelos})
+
+@app.post("/veiculo_atualizar/{veiculo_id}")
+async def veiculo_atualizar(db: SessionDep, veiculo_id: int, veiculo: Annotated[VeiculoUpdate, Form()]):
+    update_veiculo(db, veiculo_id, veiculo)
+    return RedirectResponse("/veiculos_lista", status_code=303)
+
+@app.post("/veiculo_deletar/{veiculo_id}")
+async def veiculo_deletar(db: SessionDep, veiculo_id: int):
+    delete_veiculo(db, veiculo_id)
+    return RedirectResponse("/veiculos_lista", status_code=303)

@@ -1,0 +1,34 @@
+{% extends "index.html" %}
+
+{% block title %} Veículos {% endblock %}
+
+{% block page_title %} Veículos {% endblock %}
+
+{% block content %} 
+<ul>
+    {% for veiculo in veiculos %}
+        <li> {{ veiculo.placa }} - {{veiculo.modelo.nome}} </li>
+        <div style="display: inline-block;">
+            <form action="/veiculo_detalhes/{{ veiculo.id }}" method="get" style="display: inline-block;">
+                <button type="submit">Ver Detalhes</button>
+            </form>
+            <form action="/veiculo_atualizar/{{ veiculo.id }}" method="get" style="display: inline-block;">
+                <button type="submit">Atualizar</button>
+            </form>
+            <form action="/veiculo_deletar/{{ veiculo.id }}" method="post" style="display: inline-block;">
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit">Deletar</button>
+            </form>
+            <br><br>
+        </div>
+    {% endfor %}
+</ul>
+<form action="/veiculo_adicionar" method="get">
+    <button type="submit">Adicionar veículo</button>
+</form>
+<br>
+<form action="/index" method="get">
+    <button type="submit">Voltar</button>
+</form>
+{% endblock %}
+

@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+
+{% block title %} Modelos {% endblock %}
+
+{% block page_title %} Modelos {% endblock %}
+
+{% block content %} 
+<ul>
+    {% for modelo in modelos %}
+        <li> {{modelo.nome}} </li>
+        <div style="display: inline-block;">
+            <form action="/modelo_detalhes/{{ modelo.id }}" method="get" style="display: inline-block;">
+                <button type="submit">Ver Detalhes</button>
+            </form>
+            <form action="/modelo_atualizar/{{ modelo.id }}" method="get" style="display: inline-block;">
+                <button type="submit">Atualizar</button>
+            </form>
+            <form action="/modelo_deletar/{{ modelo.id }}" method="post" style="display: inline-block;">
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit">Deletar</button>
+            </form>
+            <br><br>
+        </div>
+    {% endfor %}
+</ul>
+<form action="/modelo_adicionar" method="get">
+    <button type="submit">Adicionar</button>
+</form>
+<br>
+<form action="/index" method="get">
+    <button type="submit">Voltar</button>
+</form>
+{% endblock %}

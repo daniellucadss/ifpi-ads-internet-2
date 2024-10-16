@@ -10,7 +10,7 @@
             <li> {{montadora.nome}} </li>
             <div style="display: inline-block;">
                 <form action="/montadora_detalhes/{{ montadora.id }}" method="get" style="display: inline-block;">
-                    <button type="submit">Ver Detalhes</button>
+                    <button type="submit">Detalhes</button>
                 </form>
                 <form action="/montadora_atualizar/{{ montadora.id }}" method="get" style="display: inline-block;">
                     <button type="submit">Atualizar</button>
@@ -19,14 +19,15 @@
                     <input type="hidden" name="_method" value="delete">
                     <button type="submit">Deletar</button>
                 </form>
+                <br><br>
             </div>
         {% endfor %}
     </ul>
     <form action="/montadora_adicionar" method="get">
-        <button type="submit">Adicionar montadora</button>
+        <button type="submit">Adicionar</button>
     </form>
     <br>
-    <form action="/" method="get">
+    <form action="/index" method="get">
         <button type="submit">Voltar</button>
     </form>
 {% endblock %}  

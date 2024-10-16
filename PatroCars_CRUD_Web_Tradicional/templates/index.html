@@ -13,11 +13,18 @@
     <main>
         <h2>{% block page_title %} Boas Vindas ao PatroCars {% endblock %}</h2>
         {% block content %}
-        <form action="/carros_lista" method="get" style="display: inline-block;">
-            <button type="submit">Carros</button>
-        </form>
         <form action="/montadoras_lista" method="get" style="display: inline-block;">
             <button type="submit">Montadoras</button>
+        </form>
+        <form action="/modelos_lista" method="get" style="display: inline-block;">
+            <button type="submit">Modelos</button>
+        </form>
+        <form action="/veiculos_lista" method="get" style="display: inline-block;">
+            <button type="submit">Veículos</button>
+        </form>
+        <br><br>
+        <form action="/login" method="get" style="display: inline-block;">
+            <button type="submit">Sair</button>
         </form>
         {% endblock %}
     </main>

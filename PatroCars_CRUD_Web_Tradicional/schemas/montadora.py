@@ -15,19 +15,3 @@ class Montadora(MontadoraBase):
     id: int
     class Config:
         orm_mode = True
-
-class CarroBase(BaseModel):
-    nome: str
-    ano_fabricacao: int
-    montadora_id: int
-
-class CarroCreate(CarroBase):
-    pass
-
-class CarroUpdate(CarroBase):
-    pass
-
-class Carro(CarroBase):
-    id: int
-    class Config:
-        orm_mode = True

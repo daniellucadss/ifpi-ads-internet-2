@@ -1,0 +1,41 @@
+{% extends "index.html" %}
+
+{% block title %} Adicionar Veiculo {% endblock %}
+
+{% block page_title %} Adicionar Veiculo {% endblock %}
+
+{% block content %} 
+<form action="/veiculo_adicionar" method="post">
+    <label for="modelo_id">Modelo:</label>
+    <select name="modelo_id" id="modelo_id">
+        <option value="">Selecione um modelo</option>
+        {% for modelo in modelos %}
+            <option value="{{ modelo.id }}">{{ modelo.nome }}</option>
+        {% endfor %}
+    </select><br>
+    <br>
+    <label for="cor">Cor:</label>
+    <input type="text" name="cor" id="cor"><br>
+    <br>
+    <label for="ano_fabricacao:">Ano de Fabricação:</label>
+    <input type="number" name="ano_fabricacao" id="ano_fabricacao:"><br>
+    <br>
+    <label for="valor">Valor:</label>
+    <input type="number" name="valor" id="valor"><br>
+    <br>
+    <label for="placa">Placa:</label>
+    <input type="text" name="placa" id="placa"><br>
+    <br>
+    <label for="vendido">Vendido:</label>
+    <input type="hidden" name="vendido" value="false">
+    <input type="checkbox" name="vendido" id="vendido"><br>
+    <br>
+    <button type="submit">Adicionar</button>
+</form>
+<br>
+<form action="/veiculos_lista" method="get">
+    <button type="submit">Voltar</button>
+</form>
+{% endblock %}
+
+

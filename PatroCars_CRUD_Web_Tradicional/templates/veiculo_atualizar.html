@@ -1,0 +1,44 @@
+{% extends "index.html" %}
+
+{% block title %} Adicionar Veiculo {% endblock %}
+
+{% block page_title %} Adicionar Veiculo {% endblock %}
+
+{% block content %} 
+<form action="/veiculo_atualizar/{{ veiculo.id }}" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <label for="modelo_id">Modelo:</label>
+    <select name="modelo_id" id="modelo_id">
+        <option value="">Selecione um modelo</option>
+        {% for modelo in modelos %}
+            <option value="{{ modelo.id }}" {% if modelo.id == veiculo.modelo_id %}selected{% endif %}>
+                {{ modelo.nome }}
+            </option>
+        {% endfor %}
+    </select><br>
+    <br>
+    <label for="cor">Cor:</label>
+    <input type="text" name="cor" id="cor" value="{{ veiculo.cor }}"><br>
+    <br>
+    <label for="ano_fabricacao">Ano de Fabricação:</label>
+    <input type="number" name="ano_fabricacao" id="ano_fabricacao" value="{{ veiculo.ano_fabricacao }}"><br>
+    <br>
+    <label for="valor">Valor:</label>
+    <input type="number" name="valor" id="valor" value="{{ veiculo.valor }}"><br>
+    <br>
+    <label for="placa">Placa:</label>
+    <input type="text" name="placa" id="placa" value="{{ veiculo.placa }}"><br>
+    <br>
+    <label for="vendido">Vendido:</label>
+    <input type="hidden" name="vendido" value="false">
+    <input type="checkbox" name="vendido" id="vendido" value="true" {% if veiculo.vendido %}checked{% endif %}><br>
+    <br>
+    <button type="submit">Atualizar</button>
+</form>
+<br>
+<form action="/veiculos_lista" method="get">
+    <button type="submit">Voltar</button>
+</form>
+{% endblock %}
+
+
