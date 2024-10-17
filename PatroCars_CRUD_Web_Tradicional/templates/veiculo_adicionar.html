@@ -5,37 +5,39 @@
 {% block page_title %} Adicionar Veiculo {% endblock %}
 
 {% block content %} 
-<form action="/veiculo_adicionar" method="post">
-    <label for="modelo_id">Modelo:</label>
-    <select name="modelo_id" id="modelo_id" class="form-control">
-        <option value="">Selecione um modelo</option>
-        {% for modelo in modelos %}
-            <option value="{{ modelo.id }}">{{ modelo.nome }}</option>
-        {% endfor %}
-    </select><br>
+<div style="display: inline-block; width: 50%; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+    <form action="/veiculo_adicionar" method="post">
+        <label for="modelo_id">Modelo:</label>
+        <select name="modelo_id" id="modelo_id" class="form-control">
+            <option value="">Selecione um modelo</option>
+            {% for modelo in modelos %}
+                <option value="{{ modelo.id }}">{{ modelo.nome }}</option>
+            {% endfor %}
+        </select><br>
+        <br>
+        <label for="cor">Cor:</label>
+        <input type="text" name="cor" id="cor" class="form-control"><br>
+        <br>
+        <label for="ano_fabricacao:">Ano de Fabricação:</label>
+        <input type="number" name="ano_fabricacao" id="ano_fabricacao:" class="form-control"><br>
+        <br>
+        <label for="valor">Valor:</label>
+        <input type="number" name="valor" id="valor" class="form-control"><br>
+        <br>
+        <label for="placa">Placa:</label>
+        <input type="text" name="placa" id="placa" class="form-control"><br>
+        <br>
+        <label for="vendido">Vendido:</label>
+        <input type="hidden" name="vendido" value="false">
+        <input type="checkbox" name="vendido" id="vendido"><br>
+        <br>
+        <button type="submit" class="btn btn-outline-primary">Adicionar</button>
+    </form>
     <br>
-    <label for="cor">Cor:</label>
-    <input type="text" name="cor" id="cor" class="form-control"><br>
-    <br>
-    <label for="ano_fabricacao:">Ano de Fabricação:</label>
-    <input type="number" name="ano_fabricacao" id="ano_fabricacao:" class="form-control"><br>
-    <br>
-    <label for="valor">Valor:</label>
-    <input type="number" name="valor" id="valor" class="form-control"><br>
-    <br>
-    <label for="placa">Placa:</label>
-    <input type="text" name="placa" id="placa" class="form-control"><br>
-    <br>
-    <label for="vendido">Vendido:</label>
-    <input type="hidden" name="vendido" value="false">
-    <input type="checkbox" name="vendido" id="vendido"><br>
-    <br>
-    <button type="submit" class="btn btn-primary">Adicionar</button>
-</form>
-<br>
-<form action="/veiculos_lista" method="get">
-    <button type="submit" class="btn btn-secondary">Voltar</button>
-</form>
+    <form action="/veiculos_lista" method="get">
+        <button type="submit" class="btn btn-outline-secondary">Voltar</button>
+    </form>
+</div>
 {% endblock %}
 
-
+{% block footer %}{% endblock %}

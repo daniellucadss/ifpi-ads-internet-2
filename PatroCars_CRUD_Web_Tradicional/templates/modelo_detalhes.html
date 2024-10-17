@@ -5,24 +5,27 @@
 {% block page_title %} Detalhes do Modelo {% endblock %}
 
 {% block content %}
-    <h3>{{ modelo.nome }}</h3>
-    <p><strong>Valor de Referência:</strong> R$ {{ "{:,.3f}".format(modelo.valor_referencia) }}</p>
-    <p><strong>Ano:</strong> {{ modelo.ano_modelo }}</p>
-    <p><strong>Motorização:</strong> {{ modelo.motorizacao }}</p>
-    <p><strong>Turbo:</strong> {{ "Sim" if modelo.turbo else "Não" }}</p>
-    <p><strong>Transmissão Automática:</strong> {{ "Sim" if modelo.automatico else "Não" }}</p>
-    <p><strong>Montadora:</strong> {{ modelo.montadora.nome }}</p>
-    <p><strong>País de Origem:</strong> {{ modelo.montadora.pais }}</p>
-    <form action="/modelo_atualizar/{{ modelo.id }}" method="get">
-        <button type="submit" class="btn btn-primary">Atualizar</button>
-    </form>
-    <br>
-    <form action="/montadora_detalhes/{{ modelo.montadora.id }}" method="get">
-        <button type="submit" class="btn btn-success">Ver Detalhes da Montadora</button>
-    </form>
-    <br>
-    <form action="/modelos_lista" method="get">
-        <button type="submit" class="btn btn-secondary">Voltar</button>
-    </form>
+    <div style="display: inline-block; width: 50%; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+        <h3>{{ modelo.nome }}</h3>
+        <p><strong>Valor de Referência:</strong> R$ {{ "{:,.3f}".format(modelo.valor_referencia) }}</p>
+        <p><strong>Ano:</strong> {{ modelo.ano_modelo }}</p>
+        <p><strong>Motorização:</strong> {{ modelo.motorizacao }}</p>
+        <p><strong>Turbo:</strong> {{ "Sim" if modelo.turbo else "Não" }}</p>
+        <p><strong>Transmissão Automática:</strong> {{ "Sim" if modelo.automatico else "Não" }}</p>
+        <p><strong>Montadora:</strong> {{ modelo.montadora.nome }}</p>
+        <p><strong>País de Origem:</strong> {{ modelo.montadora.pais }}</p>
+        <form action="/modelo_atualizar/{{ modelo.id }}" method="get">
+            <button type="submit" class="btn btn-outline-primary">Atualizar</button>
+        </form>
+        <br>
+        <form action="/montadora_detalhes/{{ modelo.montadora.id }}" method="get">
+            <button type="submit" class="btn btn-outline-success">Ver Detalhes da Montadora</button>
+        </form>
+        <br>
+        <form action="/modelos_lista" method="get">
+            <button type="submit" class="btn btn-outline-secondary">Voltar</button>
+        </form>
+    </div>
 {% endblock %}
 
+{% block footer %}{% endblock %}

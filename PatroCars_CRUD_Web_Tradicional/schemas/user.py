@@ -7,5 +7,3 @@ class UsuarioCreate(BaseModel):
 class UsuarioLogin(BaseModel):
     username: str
     password: str
-
-    

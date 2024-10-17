@@ -5,30 +5,33 @@
 {% block page_title %} Veículos {% endblock %}
 
 {% block content %} 
-<ul>
-    {% for veiculo in veiculos %}
-        <li> {{ veiculo.placa }} - {{veiculo.modelo.nome}} </li>
-        <div style="display: inline-block;">
-            <form action="/veiculo_detalhes/{{ veiculo.id }}" method="get" style="display: inline-block;">
-                <button type="submit" class="btn btn-success">Ver Detalhes</button>
-            </form>
-            <form action="/veiculo_atualizar/{{ veiculo.id }}" method="get" style="display: inline-block;">
-                <button type="submit" class="btn btn-primary">Atualizar</button>
-            </form>
-            <form action="/veiculo_deletar/{{ veiculo.id }}" method="post" style="display: inline-block;">
-                <input type="hidden" name="_method" value="delete">
-                <button type="submit" class="btn btn-danger">Deletar</button>
-            </form>
-            <br><br>
-        </div>
-    {% endfor %}
-</ul>
-<form action="/veiculo_adicionar" method="get">
-    <button type="submit" class="btn btn-primary">Adicionar</button>
-</form>
-<br>
-<form action="/index" method="get">
-    <button type="submit" class="btn btn-secondary">Voltar</button>
-</form>
+<div style="display: inline-block; width: 50%; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+    <ul style="list-style-type: circle">
+        {% for veiculo in veiculos %}
+            <li> {{ veiculo.placa }} - {{veiculo.modelo.nome}} </li>
+            <div style="display: inline-block;">
+                <form action="/veiculo_detalhes/{{ veiculo.id }}" method="get" style="display: inline-block;">
+                    <button type="submit" class="btn btn-outline-success">Ver Detalhes</button>
+                </form>
+                <form action="/veiculo_atualizar/{{ veiculo.id }}" method="get" style="display: inline-block;">
+                    <button type="submit" class="btn btn-outline-primary">Atualizar</button>
+                </form>
+                <form action="/veiculo_deletar/{{ veiculo.id }}" method="post" style="display: inline-block;">
+                    <input type="hidden" name="_method" value="delete">
+                    <button type="submit" class="btn btn-outline-danger">Deletar</button>
+                </form>
+                <br><br>
+            </div>
+        {% endfor %}
+    </ul>
+    <form action="/veiculo_adicionar" method="get">
+        <button type="submit" class="btn btn-outline-primary">Adicionar</button>
+    </form>
+    <br>
+    <form action="/index" method="get">
+        <button type="submit" class="btn btn-outline-secondary">Voltar</button>
+    </form>
+</div>
 {% endblock %}
 
+{% block footer %}{% endblock %}

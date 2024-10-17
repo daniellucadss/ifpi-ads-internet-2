@@ -1,12 +1,14 @@
 {% extends "index.html" %}
 
 {% block title %}Login{% endblock %}
-{% block page_title %}Login{% endblock %}
+
+{% block page_title %}{% endblock %}
 
 {% block content %}
 <section id="section-login">
     <div class="d-flex justify-content-center">
         <form method="post" action="/login" id="login">
+            <h2>Login</h2>
             <p>
                 <label for="username">Nome de usuário: </label>
                 <input id="username" name="username" required="required" type="text" placeholder="Nome de usuário" class="form-control" />
@@ -16,7 +18,7 @@
                 <input id="password" name="password" required="required" type="password" placeholder="Senha" class="form-control" />
             </p>
             <p>
-                <button type="submit" class="btn btn-success" onclick="login()">Entrar</button>
+                <button type="submit" class="btn btn-outline-success" onclick="login()">Entrar</button>
             </p>
             {% if error %}
             <p style="color: red;">{{ error }}</p>
@@ -27,13 +29,14 @@
         </form>
     </div>
 </section>
-
 <section id="section-cadastro">
-    <div id="botao-cadastrar">
-        <button type="button" class="btn btn-info" data-bs-toggle="collapse" data-bs-target="#form-cadastrar">Não é cadastrado ainda? Cadastre-se</button>
-    </div>
+    <div class="d-flex justify-content-center" id="botao-cadastrar">
+        <button type="button" class="btn btn-outline-info" data-bs-toggle="collapse" data-bs-target="#form-cadastrar">Não é cadastrado ainda? Cadastre-se</button>
+    </div><br>
     <div id="form-cadastrar" class="collapse">
-        <h2>Criar minha conta</h2>
+        <div class="d-flex justify-content-center">
+            <h2>Criar minha conta</h2>
+        </div>
         <div class="d-flex justify-content-center">
             <form method="post" action="/cadastro" id="cadastro">
                 <p>
@@ -45,7 +48,7 @@
                     <input id="password_cadastro" name="password" required="required" type="password" placeholder="Mínimo de 6 caracteres" class="form-control" />
                 </p>
                 <p>
-                    <button type="submit" class="btn btn-primary" onclick="cadastro()">Cadastrar</button>
+                    <button type="submit" class="btn btn-outline-primary" onclick="cadastro()">Cadastrar</button>
                 </p>
             </form>
         </div>
@@ -53,3 +56,4 @@
 </section>
 {% endblock %}
 
+{% block footer %}{% endblock %}

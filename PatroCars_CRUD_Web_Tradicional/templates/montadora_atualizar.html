@@ -5,21 +5,25 @@
 {% block page_title %} Atualizar Montadora {% endblock %}
 
 {% block content %} 
-<form action="/montadora_atualizar/{{ montadora.id }}" method="post">
-    <input type="hidden" name="_method" value="patch">
-    <label for="nome">Nome da Montadora:</label>
-    <input type="text" name="nome" id ="nome" value="{{ montadora.nome }}" class="form-control"><br>
+<div style="display: inline-block; width: 50%; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+    <form action="/montadora_atualizar/{{ montadora.id }}" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <label for="nome">Nome da Montadora:</label>
+        <input type="text" name="nome" id ="nome" value="{{ montadora.nome }}" class="form-control"><br>
+        <br>
+        <label for="pais">País de origem:</label>
+        <input type="text" name="pais" id ="pais" value="{{ montadora.pais }}" class="form-control"><br>
+        <br>
+        <label for="ano_fundacao">Ano de fundação:</label>
+        <input type="number" name="ano_fundacao" id ="ano_fundacao" value="{{ montadora.ano_fundacao }}" class="form-control"><br>
+        <br>
+        <button type="submit" class="btn btn-outline-primary">Atualizar</button>
+    </form>
     <br>
-    <label for="pais">País de origem:</label>
-    <input type="text" name="pais" id ="pais" value="{{ montadora.pais }}" class="form-control"><br>
-    <br>
-    <label for="ano_fundacao">Ano de fundação:</label>
-    <input type="number" name="ano_fundacao" id ="ano_fundacao" value="{{ montadora.ano_fundacao }}" class="form-control"><br>
-    <br>
-    <button type="submit" class="btn btn-primary">Atualizar</button>
-</form>
-<br>
-<form action="/montadoras_lista" method="get">
-    <button type="submit" class="btn btn-secondary">Voltar</button>
-</form>
+    <form action="/montadoras_lista" method="get">
+        <button type="submit" class="btn btn-outline-secondary">Voltar</button>
+    </form>
+</div>
 {% endblock %}
+
+{% block footer %}{% endblock %}

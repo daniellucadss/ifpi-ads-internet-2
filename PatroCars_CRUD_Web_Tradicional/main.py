@@ -3,8 +3,7 @@ from fastapi import Depends, FastAPI, Form, Request
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from sqlmodel import Session, SQLModel, select
-from repository.models import Usuario
+from sqlmodel import Session, SQLModel
 from repository.operations import create_montadora, create_usuario, create_veiculo, delete_veiculo, get_montadora, get_montadoras, get_usuario, get_veiculo, get_veiculos, update_montadora, delete_montadora, create_modelo, get_modelo, get_modelos, update_modelo, delete_modelo, update_veiculo
 from schemas.montadora import MontadoraCreate, MontadoraUpdate
 from schemas.modelo import ModeloCreate, ModeloUpdate

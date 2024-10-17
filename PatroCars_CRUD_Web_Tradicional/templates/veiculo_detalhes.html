@@ -5,25 +5,29 @@
 {% block page_title %} Detalhes do Veículo {% endblock %}
 
 {% block content %}
-    <h3>{{ veiculo.modelo.nome }}</h3>
-    <p><strong>Cor:</strong> {{ veiculo.cor }}</p>
-    <p><strong>Ano de Fabricação:</strong> {{ veiculo.ano_fabricacao }}</p>
-    <p><strong>Ano do Modelo:</strong> {{ veiculo.modelo.ano_modelo }}</p>
-    <p><strong>Valor:</strong> R$ {{ "{:,.3f}".format(veiculo.valor) }}</p>
-    <p><strong>Placa:</strong> {{ veiculo.placa }}</p>
-    <p><strong>Modelo:</strong> {{ veiculo.modelo.nome }}</p>
-    <p><strong>Montadora:</strong> {{ veiculo.modelo.montadora.nome }}</p>
-    <p><strong>País de Origem:</strong> {{ veiculo.modelo.montadora.pais }}</p>
-    <p><strong>Vendido:</strong> {{ "Sim" if veiculo.vendido else "Não" }}</p>
-    <form action="/veiculo_atualizar/{{ veiculo.id }}" method="get">
-        <button type="submit" class="btn btn-primary">Atualizar</button>
-    </form>
-    <br>
-    <form action="/modelo_detalhes/{{ veiculo.modelo.id }}" method="get">
-        <button type="submit" class="btn btn-success">Ver Detalhes do Modelo</button>
-    </form>
-    <br>
-    <form action="/veiculos_lista" method="get">
-        <button type="submit" class="btn btn-secondary">Voltar</button>
-    </form>
+    <div style="display: inline-block; width: 50%; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+        <h3>{{ veiculo.modelo.nome }}</h3>
+        <p><strong>Cor:</strong> {{ veiculo.cor }}</p>
+        <p><strong>Ano de Fabricação:</strong> {{ veiculo.ano_fabricacao }}</p>
+        <p><strong>Ano do Modelo:</strong> {{ veiculo.modelo.ano_modelo }}</p>
+        <p><strong>Valor:</strong> R$ {{ "{:,.3f}".format(veiculo.valor) }}</p>
+        <p><strong>Placa:</strong> {{ veiculo.placa }}</p>
+        <p><strong>Modelo:</strong> {{ veiculo.modelo.nome }}</p>
+        <p><strong>Montadora:</strong> {{ veiculo.modelo.montadora.nome }}</p>
+        <p><strong>País de Origem:</strong> {{ veiculo.modelo.montadora.pais }}</p>
+        <p><strong>Vendido:</strong> {{ "Sim" if veiculo.vendido else "Não" }}</p>
+        <form action="/veiculo_atualizar/{{ veiculo.id }}" method="get">
+            <button type="submit" class="btn btn-outline-primary">Atualizar</button>
+        </form>
+        <br>
+        <form action="/modelo_detalhes/{{ veiculo.modelo.id }}" method="get">
+            <button type="submit" class="btn btn-outline-success">Ver Detalhes do Modelo</button>
+        </form>
+        <br>
+        <form action="/veiculos_lista" method="get">
+            <button type="submit" class="btn btn-outline-secondary">Voltar</button>
+        </form>
+    </div>
 {% endblock %}
+
+{% block footer %}{% endblock %}

@@ -5,20 +5,24 @@
 {% block page_title %} Adicionar Montadora {% endblock %}
 
 {% block content %} 
-<form action="/montadora_adicionar" method="post">
-    <label for="nome">Nome da Montadora:</label>
-    <input type="text" name="nome" id ="nome" class="form-control"><br>
+<div style="display: inline-block; width: 50%; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+    <form action="/montadora_adicionar" method="post">
+        <label for="nome">Nome da Montadora:</label>
+        <input type="text" name="nome" id ="nome" class="form-control"><br>
+        <br>
+        <label for="pais">País de origem:</label>
+        <input type="text" name="pais" id ="pais" class="form-control"><br>
+        <br>
+        <label for="ano_fundacao">Ano de fundação:</label>
+        <input type="number" name="ano_fundacao" id ="ano_fundacao" class="form-control"><br>
+        <br>
+        <button type="submit" class="btn btn-outline-primary">Adicionar</button>
+    </form>
     <br>
-    <label for="pais">País de origem:</label>
-    <input type="text" name="pais" id ="pais" class="form-control"><br>
-    <br>
-    <label for="ano_fundacao">Ano de fundação:</label>
-    <input type="number" name="ano_fundacao" id ="ano_fundacao" class="form-control"><br>
-    <br>
-    <button type="submit" class="btn btn-primary">Adicionar</button>
-</form>
-<br>
-<form action="/montadoras_lista" method="get">
-    <button type="submit" class="btn btn-secondary">Voltar</button>
-</form>
+    <form action="/montadoras_lista" method="get">
+        <button type="submit" class="btn btn-outline-secondary">Voltar</button>
+    </form>
+</div>
 {% endblock %}
+
+{% block footer %}{% endblock %}

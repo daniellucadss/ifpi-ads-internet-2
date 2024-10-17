@@ -5,40 +5,42 @@
 {% block page_title %} Adicionar Veiculo {% endblock %}
 
 {% block content %} 
-<form action="/veiculo_atualizar/{{ veiculo.id }}" method="post">
-    <input type="hidden" name="_method" value="patch">
-    <label for="modelo_id">Modelo:</label>
-    <select name="modelo_id" id="modelo_id" class="form-control">
-        <option value="">Selecione um modelo</option>
-        {% for modelo in modelos %}
-            <option value="{{ modelo.id }}" {% if modelo.id == veiculo.modelo_id %}selected{% endif %}>
-                {{ modelo.nome }}
-            </option>
-        {% endfor %}
-    </select><br>
+<div style="display: inline-block; width: 50%; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+    <form action="/veiculo_atualizar/{{ veiculo.id }}" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <label for="modelo_id">Modelo:</label>
+        <select name="modelo_id" id="modelo_id" class="form-control">
+            <option value="">Selecione um modelo</option>
+            {% for modelo in modelos %}
+                <option value="{{ modelo.id }}" {% if modelo.id == veiculo.modelo_id %}selected{% endif %}>
+                    {{ modelo.nome }}
+                </option>
+            {% endfor %}
+        </select><br>
+        <br>
+        <label for="cor">Cor:</label>
+        <input type="text" name="cor" id="cor" value="{{ veiculo.cor }}" class="form-control"><br>
+        <br>
+        <label for="ano_fabricacao">Ano de Fabricação:</label>
+        <input type="number" name="ano_fabricacao" id="ano_fabricacao" value="{{ veiculo.ano_fabricacao }}" class="form-control"><br>
+        <br>
+        <label for="valor">Valor:</label>
+        <input type="number" name="valor" id="valor" value="{{ veiculo.valor }}" class="form-control"><br>
+        <br>
+        <label for="placa">Placa:</label>
+        <input type="text" name="placa" id="placa" value="{{ veiculo.placa }}" class="form-control"><br>
+        <br>
+        <label for="vendido">Vendido:</label>
+        <input type="hidden" name="vendido" value="false">
+        <input type="checkbox" name="vendido" id="vendido" value="true" {% if veiculo.vendido %}checked{% endif %}><br>
+        <br>
+        <button type="submit" class="btn btn-outline-primary">Atualizar</button>
+    </form>
     <br>
-    <label for="cor">Cor:</label>
-    <input type="text" name="cor" id="cor" value="{{ veiculo.cor }}" class="form-control"><br>
-    <br>
-    <label for="ano_fabricacao">Ano de Fabricação:</label>
-    <input type="number" name="ano_fabricacao" id="ano_fabricacao" value="{{ veiculo.ano_fabricacao }}" class="form-control"><br>
-    <br>
-    <label for="valor">Valor:</label>
-    <input type="number" name="valor" id="valor" value="{{ veiculo.valor }}" class="form-control"><br>
-    <br>
-    <label for="placa">Placa:</label>
-    <input type="text" name="placa" id="placa" value="{{ veiculo.placa }}" class="form-control"><br>
-    <br>
-    <label for="vendido">Vendido:</label>
-    <input type="hidden" name="vendido" value="false">
-    <input type="checkbox" name="vendido" id="vendido" value="true" {% if veiculo.vendido %}checked{% endif %}><br>
-    <br>
-    <button type="submit" class="btn btn-primary">Atualizar</button>
-</form>
-<br>
-<form action="/veiculos_lista" method="get">
-    <button type="submit" class="btn btn-secondary">Voltar</button>
-</form>
+    <form action="/veiculos_lista" method="get">
+        <button type="submit" class="btn btn-outline-secondary">Voltar</button>
+    </form>
+</div>
 {% endblock %}
 
-
+{% block footer %}{% endblock %}

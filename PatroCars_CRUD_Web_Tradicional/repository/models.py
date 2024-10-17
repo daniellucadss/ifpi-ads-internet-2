@@ -34,5 +34,3 @@ class Veiculo(SQLModel, table=True):
   placa: str
   vendido: bool
   modelo: Modelo = Relationship(back_populates="veiculos")
-
-

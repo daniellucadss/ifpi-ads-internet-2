@@ -5,42 +5,46 @@
 {% block page_title %} Atualizar Modelo {% endblock %}
 
 {% block content %} 
-<form action="/modelo_atualizar/{{ modelo.id }}" method="post">
-    <input type="hidden" name="_method" value="patch">
-    <label for="nome">Nome do Modelo:</label>
-    <input type="text" name="nome" id ="nome" value="{{ modelo.nome }}" class="form-control"><br>
+<div style="display: inline-block; width: 50%; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+    <form action="/modelo_atualizar/{{ modelo.id }}" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <label for="nome">Nome do Modelo:</label>
+        <input type="text" name="nome" id ="nome" value="{{ modelo.nome }}" class="form-control"><br>
+        <br>
+        <label for="montadora_id">Montadora:</label>
+        <select name="montadora_id" id="montadora_id" class="form-control">
+            <option value="">Selecione uma montadora</option>
+            {% for montadora in montadoras %}
+                <option value="{{ montadora.id }}" {% if montadora.id == modelo.montadora_id %}selected{% endif %}>
+                    {{ montadora.nome }}
+                </option>
+            {% endfor %}
+        </select><br>
+        <br>
+        <label for="valor_referencia">Valor de Referência:</label>
+        <input type="number" name="valor_referencia" id="valor_referencia" value="{{ modelo.valor_referencia }}" class="form-control"><br>
+        <br>
+        <label for="ano_modelo">Ano do Modelo:</label>
+        <input type="number" name="ano_modelo" id="ano_modelo" value="{{ modelo.ano_modelo }}" class="form-control"><br>
+        <br>
+        <label for="motorizacao">Motorização:</label>
+        <input type="number" step="0.01" name="motorizacao" id="motorizacao" value="{{ modelo.motorizacao }}" class="form-control"><br>
+        <br>
+        <label for="turbo">Tem Turbo:</label>
+        <input type="hidden" name="turbo" value="false">
+        <input type="checkbox" name="turbo" id="turbo" value="true" {% if modelo.turbo %}checked{% endif %}><br>
+        <br>
+        <label for="automatico">Tem Transmissão Automática:</label>
+        <input type="hidden" name="automatico" value="false">
+        <input type="checkbox" name="automatico" id="automatico" value="true" {% if modelo.automatico %}checked{% endif %}><br>
+        <br>
+        <button type="submit" class="btn btn-outline-primary">Atualizar</button>
+    </form>
     <br>
-    <label for="montadora_id">Montadora:</label>
-    <select name="montadora_id" id="montadora_id" class="form-control">
-        <option value="">Selecione uma montadora</option>
-        {% for montadora in montadoras %}
-            <option value="{{ montadora.id }}" {% if montadora.id == modelo.montadora_id %}selected{% endif %}>
-                {{ montadora.nome }}
-            </option>
-        {% endfor %}
-    </select><br>
-    <br>
-    <label for="valor_referencia">Valor de Referência:</label>
-    <input type="number" name="valor_referencia" id="valor_referencia" value="{{ modelo.valor_referencia }}" class="form-control"><br>
-    <br>
-    <label for="ano_modelo">Ano do Modelo:</label>
-    <input type="number" name="ano_modelo" id="ano_modelo" value="{{ modelo.ano_modelo }}" class="form-control"><br>
-    <br>
-    <label for="motorizacao">Motorização:</label>
-    <input type="number" step="0.01" name="motorizacao" id="motorizacao" value="{{ modelo.motorizacao }}" class="form-control"><br>
-    <br>
-    <label for="turbo">Tem Turbo:</label>
-    <input type="hidden" name="turbo" value="false">
-    <input type="checkbox" name="turbo" id="turbo" value="true" {% if modelo.turbo %}checked{% endif %}><br>
-    <br>
-    <label for="automatico">Tem Transmissão Automática:</label>
-    <input type="hidden" name="automatico" value="false">
-    <input type="checkbox" name="automatico" id="automatico" value="true" {% if modelo.automatico %}checked{% endif %}><br>
-    <br>
-    <button type="submit" class="btn btn-primary">Atualizar</button>
-</form>
-<br>
-<form action="/modelos_lista" method="get">
-    <button type="submit" class="btn btn-secondary">Voltar</button>
-</form>
+    <form action="/modelos_lista" method="get">
+        <button type="submit" class="btn btn-outline-secondary">Voltar</button>
+    </form>
+</div>
 {% endblock %}
+
+{% block footer %}{% endblock %}

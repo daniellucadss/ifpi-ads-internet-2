@@ -144,4 +144,3 @@ def delete_veiculo(db: Session, veiculo_id: int):
     db_veiculo = get_veiculo(db, veiculo_id)
     db.delete(db_veiculo)
     db.commit()
-

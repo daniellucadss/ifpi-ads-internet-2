@@ -29,5 +29,3 @@ function cadastro() {
     alert("Cadastrado com sucesso!");
     window.location.href = "/login";
 }
-
-    
