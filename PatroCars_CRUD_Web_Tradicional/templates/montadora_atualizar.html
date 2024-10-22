@@ -7,7 +7,6 @@
 {% block content %} 
 <div style="display: inline-block; width: 50%; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
     <form action="/montadora_atualizar/{{ montadora.id }}" method="post">
-        <input type="hidden" name="_method" value="patch">
         <label for="nome">Nome da Montadora:</label>
         <input type="text" name="nome" id ="nome" value="{{ montadora.nome }}" class="form-control"><br>
         <br>

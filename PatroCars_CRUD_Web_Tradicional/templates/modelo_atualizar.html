@@ -7,7 +7,6 @@
 {% block content %} 
 <div style="display: inline-block; width: 50%; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
     <form action="/modelo_atualizar/{{ modelo.id }}" method="post">
-        <input type="hidden" name="_method" value="patch">
         <label for="nome">Nome do Modelo:</label>
         <input type="text" name="nome" id ="nome" value="{{ modelo.nome }}" class="form-control"><br>
         <br>
