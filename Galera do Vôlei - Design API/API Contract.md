@@ -71,7 +71,6 @@
         "error": "Parâmetros invalidos."
       }
       ```
-    <br>
     - **Code**: `401 Unauthorized`
     - **Content**: 
       ```json
@@ -111,7 +110,6 @@
         "error": "Registro não encontrado."
       }
       ```
-    <br>
     - **Code**: `401 Unauthorized`
     - **Content**:
       ```json
@@ -157,7 +155,6 @@
         "error": "Registro existente."
       }
       ```
-    <br>
     - **Code**: `401 Unauthorized`
     - **Content**: 
       ```json
@@ -204,7 +201,6 @@
         "error": "Registro não encontrado."
       }
       ```
-    <br>
     - **Code**: `401 Unauthorized`
     - **Content**: 
       ```json
@@ -234,7 +230,6 @@
         "error": "Não autorizado."
       }
       ```
-    <br>
     - **Code**: `404 Not Found`
     - **Content**: 
       ```json
@@ -314,7 +309,6 @@
         "error": "Não autorizado."
       }
       ```
-    <br>
     - **Code**: `404 Not Found`
     - **Content**:
       ```json
@@ -345,7 +339,6 @@
         "error": "Não autorizado."
       }
       ```
-    <br>
     - **Code**: `404 Not Found`
     - **Content**: 
       ```json
@@ -390,14 +383,12 @@
         "error": "Não autorizado."
       }
       ```
-    <br>
     - **Code**: `403 Forbidden`
     - **Content**: 
       ```json
       {
         "error": "Operação não autorizada." // Somente usuários do tipo organizador podem criar partidas.
       }
-    <br>
     - **Code**: `404 Not Found`
     - **Content**: 
       ```json
@@ -441,14 +432,12 @@
       {
         "error": "Não autorizado."
       }
-    <br>
     - **Code**: `403 Forbidden`
     - **Content**: 
       ```json
       {
         "error": "Operação não autorizada." // Somente usuários do tipo organizador podem atualizar partidas.
       }
-    <br>
     - **Code**: `404 Not Found`
     - **Content**: 
       ```json
@@ -477,14 +466,12 @@
       {
         "error": "Não autorizado."
       }
-    <br>
     - **Code**: `403 Forbidden`
     - **Content**: 
       ```json
       {
         "error": "Operação não autorizada." // Somente usuários do tipo organizador podem excluir partidas.
       }
-    <br>
     - **Code**: `404 Not Found`
     - **Content**: 
       ```json
@@ -537,7 +524,6 @@
         "error": "-nao autorizado."
       }
       ```
-    <br>
     - **Code**: `404 Not Found`
     - **Content**: 
       ```json
