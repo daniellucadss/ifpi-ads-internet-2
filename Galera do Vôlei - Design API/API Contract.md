@@ -387,7 +387,7 @@
     - **Content**: 
       ```json
       {
-        "error": "Operação não autorizada." // Somente usuários do tipo organizador podem criar partidas.
+        "error": "Somente usuários do tipo organizador podem criar partidas."
       }
     - **Code**: `404 Not Found`
     - **Content**: 
@@ -436,7 +436,7 @@
     - **Content**: 
       ```json
       {
-        "error": "Operação não autorizada." // Somente usuários do tipo organizador podem atualizar partidas.
+        "error": "Somente usuários do tipo organizador podem atualizar partidas."
       }
     - **Code**: `404 Not Found`
     - **Content**: 
@@ -470,7 +470,7 @@
     - **Content**: 
       ```json
       {
-        "error": "Operação não autorizada." // Somente usuários do tipo organizador podem excluir partidas.
+        "error": "Somente usuários do tipo organizador podem excluir partidas."
       }
     - **Code**: `404 Not Found`
     - **Content**: 
@@ -596,7 +596,7 @@
         "requester_id": "integer",
         "requestee_id": "integer",
         "message": "string",
-        "status": "ACCEPTED" || "REJECTED"
+        "status": "ACCEPTED || REJECTED"
       }
       ```
       
