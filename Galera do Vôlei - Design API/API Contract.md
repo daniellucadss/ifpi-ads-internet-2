@@ -1,7 +1,5 @@
 # Contrato de API - Galera do Vôlei
 
----
-
 ## Endpoints - Usuários
 
 ### 1. **GET /usuarios**
