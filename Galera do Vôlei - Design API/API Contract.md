@@ -1,9 +1,6 @@
 # Contrato de API - Galera do Vôlei
-
 ## Endpoints - Usuários
-
 ### 1. **GET /usuarios**
-
 - **Descrição**: Retorna todos os usuários com opções de filtro, ordenação e paginação.
 - **URL Params**: None
 - **Query Params**:
@@ -75,9 +72,7 @@
       { "error": "Não autorizado." }
       ```
 
-
 ### 2. **GET /usuarios/{id}**
-
 - **Descrição**: Retorna informações de um usuário específico.
 - **URL Params**:
   - `usuario_id` (obrigatório, `integer`): ID do usuário.
@@ -117,7 +112,6 @@
       ```
 
 ### 3. **POST /usuarios**
-
 - **Descrição**: Cria um novo usuário.
 - **URL Params**: None
 - **Query Params**: None
@@ -162,7 +156,6 @@
       ```
 
 ### 4. **PUT /usuarios/{id}**
-
 - **Descrição**: Atualiza informações de um usuário específico.
 - **URL Params**:
   - `usuario_id` (obrigatório, `integer`): ID do usuário.
@@ -208,7 +201,6 @@
 
 
 ### 5. **DELETE /usuarios/{id}**
-
 - **Descrição**: Exclui um usuário específico.
 - **URL Params**:
   - `usuario_id` (obrigatório, `integer`): ID do usuário.
@@ -238,9 +230,7 @@
 ---
 
 ## Endpoints - Partidas
-
 ### 1. **GET /partidas**
-
 - **Descrição**: Retorna todas as partidas com opções de filtro ordenação e paginação.
 - **URL Params**: None
 - **Query Params**:
@@ -316,7 +306,6 @@
       ```
 
 ### 2. **GET /partidas/{partida_id}**
-
 - **Descrição**: Retorna detalhes de uma partida específica.
 - **URL Params**:
   - `partida_id` (obrigatório, `integer`): ID da partida.
@@ -346,7 +335,6 @@
    
 
 ### 3. **POST /partidas**
-
 - **Descrição**: Cria uma nova partida associada a um usuário específico.
 - **URL Params**: None
 - **Query Params**: None
@@ -396,7 +384,6 @@
 
 
 ### 4. **PUT /partidas/{partida_id}**
-
 - **Descrição**: Atualiza os dados de uma partida especifica.
 - **URL Params**:
   - `partida_id` (obrigatório, `integer`): ID da partida que será atualizada
@@ -443,9 +430,7 @@
         "error": "Registro não encontrado."
       }
 
-
 ### 5. **DELETE /partidas/{partida_id}**
-
 - **Descrição**: Exclui os dados de uma partida especifica.
 - **URL Params**:
   - `partida_id` (obrigatório, `integer`): ID da partida.
@@ -480,9 +465,7 @@
 ---
 
 ## Endpoints - Solicitações
-
 ### 1. **GET /partidas/{partida_id}/solicitacoes?status=PENDING**
-
 - **Descrição**: Retorna todas as solicitações pendentes para a participação de uma partida.
 - **URL Params**:
   - `partida_id` (obrigatório, `integer`): ID da partida.
@@ -530,7 +513,6 @@
       }
 
 ### 2 **POST /partidas/{partida_id}/solicitacoes/**
-
 - **Descrição**: Um usuário envia uma solicitação para participar de uma partida.
 - **URL Params**:
   - `partida_id` (obrigatório, `integer`): ID da partida para a qual a solicitação será enviada.
@@ -573,7 +555,6 @@
 
 
 ### 3 **PUT partidas/{partida_id}/solicitacoes/{solicitacao_id}?action=(ACCEPT|REJECT)**
-
 - **Descrição**: Um usuário aceita ou rejeita uma solicitação para participar de uma partida.
 - **URL Params**:
   - `partida_id` (obrigatório, `integer`): ID da partida para a qual a solicitação foi enviada.
@@ -613,6 +594,3 @@
         "error": "Registro nao encontrado."
       }
       ```
-
-     
-      
