@@ -1,4 +1,9 @@
 # Contrato de API - Galera do Vôlei
+
+**Integrantes**:
+- Daniel Luca
+- Francisco Igor
+
 ## Endpoints - Usuários
 ### 1. **GET /usuarios**
 - **Descrição**: Retorna todos os usuários com opções de filtro, ordenação e paginação.
@@ -199,7 +204,6 @@
         "error": "Não autorizado."
       }
 
-
 ### 5. **DELETE /usuarios/{id}**
 - **Descrição**: Exclui um usuário específico.
 - **URL Params**:
@@ -333,7 +337,6 @@
         "error": "Registro não encontrado."
       }
    
-
 ### 3. **POST /partidas**
 - **Descrição**: Cria uma nova partida associada a um usuário específico.
 - **URL Params**: None
@@ -381,7 +384,6 @@
       {
         "error": "Registro não encontrado."
       }
-
 
 ### 4. **PUT /partidas/{partida_id}**
 - **Descrição**: Atualiza os dados de uma partida especifica.
@@ -553,7 +555,6 @@
       }
       ```
 
-
 ### 3 **PUT partidas/{partida_id}/solicitacoes/{solicitacao_id}?action=(ACCEPT|REJECT)**
 - **Descrição**: Um usuário aceita ou rejeita uma solicitação para participar de uma partida.
 - **URL Params**:
@@ -578,7 +579,6 @@
         "status": "ACCEPTED || REJECTED"
       }
       ```
-      
   - **Error**:
     - **Code**: `401 Unauthorized`
     - **Content**:
@@ -592,5 +592,225 @@
       ```json
       {
         "error": "Registro nao encontrado."
+      }
+      ```
+
+## Endpoints - Pagamentos
+### 1. **GET /pagamentos**
+- **Descrição**: Retorna todos os pagamentos com opções de filtro, ordenação e paginação.
+- **URL Params**: None
+- **Query Params**:
+  - `usuario_id` (opcional, `integer`): Filtra por ID do usuário.
+  - `partida_id` (opcional, `integer`): Filtra por ID da partida.
+  - `data` (opcional, `date`): Filtra por data do pagamento.
+  - `valor` (opcional, `float`): Filtra por valor do pagamento.
+  - `status` (opcional, `string`): Filtra por status do pagamento (PENDING, PAID, CANCELED).
+  - `order` (opcional, `string`): Ordena os resultados por campo. Formato: `{campo}_{asc|desc}`.
+    - Campos suportados: `data`, `valor`, `status`.
+    - Exemplo: `order=data_asc` ou `order=valor_desc`.
+  - `page` (opcional, `integer`): Define a página atual dos resultados.
+  - `per_page` (opcional, `integer`): Número de pagamentos por página.
+- **Data Params**: None
+- **Headers**:
+  - `Content-Type`: `application/json`
+  - `Authorization Token`: `Bearer <OAuth Token>`
+- **Response**:
+  - **Success**:
+    - **Code**: `200 OK`
+    - **Content**: 
+      ```json
+      {
+        "_metadata": 
+        {
+            "current_page": "2",
+            "per_page": "2",
+            "page_count": "2",
+            "total_count": "10",
+            "order": "data_asc",
+            "links": [
+                {"self": "/pagamentos?page=2&per_page=2"},
+                {"first": "/pagamentos?page=0&per_page=2"},
+                {"previous": "/pagamentos?page=1&per_page=2"},
+                {"next": "/pagamentos?page=3&per_page=2"},
+                {"last": "/pagamentos?page=5&per_page=2"},
+            ]
+        },
+        "pagamentos": [
+            {
+                "pagamento_id": 1,
+                "usuario_id": 1,
+                "partida_id": 1,
+                "data": "2024-11-07",
+                "valor": 50.00,
+                "status": "PAID"
+            },
+            {
+                "pagamento_id": 2,
+                "usuario_id": 2,
+                "partida_id": 2,
+                "data": "2024-10-15",
+                "valor": 30.00,
+                "status": "PENDING"
+            }
+        ]
+      }
+      ```
+  - **Error**:
+    - **Code**: `401 Unauthorized`
+    - **Content**:
+      ```json
+      {
+        "error": "Não autorizado."
+      }
+      ```
+    - **Code**: `404 Not Found`
+    - **Content**: 
+      ```json
+      {
+        "error": "Registro não encontrado."
+      }
+      ```
+
+### 2. **GET /pagamentos/{pagamento_id}**
+- **Descrição**: Retorna detalhes de um pagamento específico.
+- **URL Params**:
+  - `pagamento_id` (obrigatório, `integer`): ID do pagamento.
+- **Query Params**: None
+- **Data Params**: None
+- **Headers**:
+  - `Content-Type`: `application/json`
+  - `Authorization Token`: `Bearer <OAuth Token>`
+- **Response**:
+  - **Success**:
+    - **Code**: `200 OK`
+    - **Content**: 
+      ```json
+      {
+        "pagamento_id": 1,
+        "usuario_id": 5,
+        "partida_id": 110,
+        "data": "2024-11-07",
+        "valor": 50.00,
+        "status": "PAID"
+      }
+      ```
+  - **Error**:
+    - **Code**: `401 Unauthorized`
+    - **Content**:
+      ```json
+      {
+        "error": "Não autorizado."
+      }
+      ```
+    - **Code**: `404 Not Found`
+    - **Content**: 
+      ```json
+      {
+        "error": "Registro não encontrado."
+      }
+      ```
+
+### 3. **POST /pagamentos**
+- **Descrição**: Cria um novo pagamento associado a um usuário e uma partida.
+- **URL Params**: None
+- **Query Params**: None
+- **Data Params**:
+  - `usuario_id` (obrigatório, `integer`): ID do usuário.
+  - `partida_id` (obrigatório, `integer`): ID da partida.
+  - `data` (obrigatório, `date`): Data do pagamento.
+  - `valor` (obrigatório, `float`): Valor do pagamento.
+  - `status` (obrigatório, `string`): Status do pagamento (PENDING, PAID, CANCELED).
+- **Headers**:
+  - `Content-Type`: `application/json`
+  - `Authorization Token`: `Bearer <OAuth Token>`
+- **Response**:
+  - **Success**:
+    - **Code**: `201 Created`
+    - **Content**: 
+      ```json
+      {
+        "pagamento_id": 3,
+        "usuario_id": 10,
+        "partida_id": 300,
+        "data": "2024-11-22",
+        "valor": 40.00,
+        "status": "PENDING"
+      }
+      ```
+  - **Error**:
+    - **Code**: `401 Unauthorized`
+    - **Content**:
+      ```json
+      {
+        "error": "Não autorizado."
+      }
+      ```
+    - **Code**: `409 Conflict`
+
+### 4. **PUT /pagamentos/{pagamento_id}?status=(PAID|CANCELED)**
+- **Descrição**: Atualiza o status de um pagamento específico.
+- **URL Params**:
+  - `pagamento_id` (obrigatório, `integer`): ID do pagamento.
+- **Query Params**:
+  - `status` (obrigatório, `string`): Define o novo status do pagamento.
+- **Data Params**: None
+- **Headers**:
+  - `Content-Type`: `application/json`
+  - `Authorization Token`: `Bearer <OAuth Token>`
+- **Response**:
+  - **Success**:
+    - **Code**: `200 OK`
+    - **Content**: 
+      ```json
+      {
+        "pagamento_id": 3,
+        "usuario_id": 10,
+        "partida_id": 300,
+        "data": "2024-11-22",
+        "valor": 40.00,
+        "status": "PAID"
+      }
+      ```
+  - **Error**:
+    - **Code**: `401 Unauthorized`
+    - **Content**:
+      ```json
+      {
+        "error": "Não autorizado."
+      }
+      ```
+    - **Code**: `404 Not Found`
+    - **Content**: 
+      ```json
+      {
+        "error": "Registro não encontrado."
+      }
+      ```
+
+### 5. **DELETE /pagamentos/{pagamento_id}**
+- **Descrição**: Exclui um pagamento específico.
+- **URL Params**:
+  - `pagamento_id` (obrigatório, `integer`): ID do pagamento.
+- **Query Params**: None
+- **Data Params**: None
+- **Headers**:
+  - `Content-Type`: `application/json`
+  - `Authorization Token`: `Bearer <OAuth Token>`
+- **Response**:
+  - **Success**:
+    - **Code**: `204 No Content`
+  - **Error**:
+    - **Code**: `401 Unauthorized`
+    - **Content**:
+      ```json
+      {
+        "error": "Não autorizado."
+      }
+      ```
+    - **Code**: `404 Not Found`
+    - **Content**: 
+      ```json
+      {
+        "error": "Registro não encontrado."
       }
       ```

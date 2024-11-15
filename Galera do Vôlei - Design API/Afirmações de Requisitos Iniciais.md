@@ -18,17 +18,17 @@
 
 ## **Usuário possui um Endereço**:
 ### **Atributos**:
-- Rua.
-- Cidade.
-- Estado.
-- CEP.
+- rua
+- cidade
+- estado
+- cep
 
 ### **Restrição de Relacionamento**:
 - Um **Usuário** pode ter um ou mais **Endereços** (relação de 1 para N).
 
 ### **Invariantes**:
-- CEP deve ter exatamente 8 dígitos.
-- Estado deve estar em uma lista de estados válidos.
+- **cep** deve ter exatamente 8 dígitos.
+- **estado** deve estar em uma lista de estados válidos.
 
 ## **Usuário pode criar ou participar de uma Partida**:
 ### **Atributos da Partida**:
@@ -65,7 +65,7 @@
 - status
 
 ### Relacionamento:
-- Um Usuário pode enviar várias Solicitações (relação 1 para N).
+- Um **Usuário** pode enviar várias Solicitações (relação 1 para N).
 
 ### Estados da Solicitação:
 - PENDING
@@ -73,4 +73,4 @@
 - REJECTED
 
 ### Invariantes:
-- status deve ser uma das opções: PENDING, ACCEPTED, REJECTED.
+- **status** deve ser uma das opções: PENDING, ACCEPTED, REJECTED.
