@@ -7,10 +7,12 @@ const Navbar: React.FC = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h6">My CRUD App</Typography>
-        <Button color="inherit" component={Link} to="/">Home</Button>
-        <Button color="inherit" component={Link} to="/add">Add</Button>
+        <Typography variant="h6">Cadastro Genérico</Typography>
+        <Button color="inherit" component={Link} to="/">Página Inicial</Button>
+        <Button color="inherit" component={Link} to="/add">Adicionar</Button>
       </Toolbar>
+
+
     </AppBar>
   );
 };

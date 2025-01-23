@@ -12,7 +12,7 @@ const List: React.FC = () => {
         <div key={item.id}>
           <h3>{item.name}</h3>
           <Link to={`/edit/${item.id}`}>Edit</Link>
-          <button onClick={() => deleteItem(item.id)}>Delete</button>
+          <button onClick={() => deleteItem(item.id)}>Deletar</button>
         </div>
       ))}
     </div>

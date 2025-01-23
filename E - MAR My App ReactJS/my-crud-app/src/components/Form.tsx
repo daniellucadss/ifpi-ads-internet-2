@@ -24,7 +24,7 @@ const Form: React.FC<FormProps> = ({ onSubmit, defaultValues }) => {
   return (
     <form onSubmit={handleSubmit(submitHandler)}>
       <input {...register('name')} placeholder="Name" />
-      <button type="submit">Submit</button>
+      <button type="submit">Cadastrar</button>
     </form>
   );
 };
