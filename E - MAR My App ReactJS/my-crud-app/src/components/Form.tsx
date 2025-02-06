@@ -8,7 +8,7 @@ interface FormProps {
 }
 
 const Form: React.FC<FormProps> = ({ onSubmit, defaultValues }) => {
-  const { register, handleSubmit, reset, setValue } = useForm({ defaultValues });
+    const { register, handleSubmit, reset, setValue } = useForm({ defaultValues });
 
   useEffect(() => {
     if (defaultValues) {
